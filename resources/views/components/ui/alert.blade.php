@@ -1,5 +1,7 @@
-<div class="alert alert-danger alert-dismissable">
+<div class="alert {{ $modifier or 'alert-info'}} {{ isset($isDismissable) ? 'alert-dismissable' : '' }}">
+  @if(isset($isDismissable))
   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-  <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-  Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.
+  @endif
+  <h4><i class="icon fa fa-ban"></i> {{ $title }}</h4>
+  {{ $text }}
 </div>
