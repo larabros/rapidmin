@@ -2,8 +2,16 @@
 
 namespace Larabros\Rapidmin;
 
+use Collective\Html\FormBuilder as BaseFormBuilder;
+use Illuminate\Support\Traits\Macroable;
+
 class FormBuilder extends BaseFormBuilder
 {
+    use Macroable, Componentable {
+        Macroable::__call as macroCall;
+        Componentable::__call as componentCall;
+    }
+
     /**
      * Open up a new HTML form.
      *
@@ -257,5 +265,32 @@ class FormBuilder extends BaseFormBuilder
         }
 
         return $this->toHtmlString('<button' . $this->html->attributes($options) . '>' . $value . '</button>');
+    }
+
+    /**
+     * Dynamically handle calls to the class.
+     *
+     * @param  string $method
+     * @param  array  $parameters
+     *
+     * @return \Illuminate\Contracts\View\View|mixed
+     *
+     * @throws \BadMethodCallException
+     */
+    public function __call($method, $parameters)
+    {
+        try {
+            return $this->componentCall($method, $parameters);
+        } catch (BadMethodCallException $e) {
+            //
+        }
+
+        try {
+            return $this->macroCall($method, $parameters);
+        } catch (BadMethodCallException $e) {
+            //
+        }
+
+        throw new BadMethodCallException("Method {$method} does not exist.");
     }
 }
