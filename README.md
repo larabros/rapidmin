@@ -12,7 +12,7 @@
 [![Documentation][ico-docs]][link-docs]
 [![Gitter][ico-gitter]][link-gitter]
 
-Rapidly build beautiful admin panels in Laravel 5.1+.
+Rapidly build beautiful admin panels with AdminLTE2 in Laravel 5.1+.
 
 ## Documentation
 

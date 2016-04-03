@@ -1,6 +1,6 @@
 {
     "name": "larabros/rapidmin",
-    "description": "Rapidly build beautiful admin panels in Laravel 5.1+",
+    "description": "Rapidly build beautiful admin panels with AdminLTE2 in Laravel 5.1+",
     "keywords": [
         "larabros",
         "rapidmin"
