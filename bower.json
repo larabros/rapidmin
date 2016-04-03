@@ -1,0 +1,30 @@
+{
+  "name": "Radmin Theme",
+  "authors": [
+    "Hassan Khan <contact@hassankhan.me>"
+  ],
+  "description": "Rapidly build an admin panel for your Laravel project with AdminLTE2, for Laravel 5.1+",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "https://github.com/larabros/radmin-theme",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "AdminLTE": "admin-lte#~2.3.2",
+    "bootstrap": "3.3.5",
+    "font-awesome": "4.4.0",
+    "Ionicons": "ionicons#2.0.1",
+    "moment": "2.10.6",
+    "jquery-ui": "1.11.4",
+    "jquery": "2.2.0",
+    "raphael": "2.1.0",
+    "dragula.js": "dragula#~3.6.3"
+  }
+}

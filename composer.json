@@ -1,0 +1,45 @@
+{
+    "name": "larabros/rapidmin",
+    "description": "Rapidly build beautiful admin panels in Laravel 5.1+",
+    "keywords": [
+        "larabros",
+        "rapidmin"
+    ],
+    "homepage": "https://github.com/larabros/rapidmin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hassan Khan",
+            "email": "contact@hassankhan.me",
+            "homepage": "http://hassankhan.me",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^5.5.9 || ^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8 || ^5.0",
+        "scrutinizer/ocular": "~1.1",
+        "squizlabs/php_codesniffer": "~2.3",
+        "mockery/mockery": "~0.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Larabros\\Rapidmin\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Larabros\\Rapidmin\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
