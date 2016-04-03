@@ -1,5 +1,9 @@
 <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Examples</a></li>
-    <li class="active">Pace page</li>
+  @foreach ($items as $index => $item)
+  @if ($index === (count($items) - 1))
+  <li class="active">{!! $item['label'] !!}</li>
+  @else
+  <li><a href="{{ $item['url'] }}">{!! $item['label'] !!}</a></li>
+  @endif
+  @endforeach
 </ol>
