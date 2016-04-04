@@ -16,7 +16,7 @@ class UiRegistrarTest extends TestCase
 
     protected function setUp()
     {
-        $viewFactory     = m::mock(Factory::class);
+        $viewFactory = m::mock(Factory::class);
         $viewFactory->shouldReceive('make')
             ->zeroOrMoreTimes()
             ->andReturn('<div></div>');
@@ -25,7 +25,7 @@ class UiRegistrarTest extends TestCase
 
     public function testProvides()
     {
-        $this->assertCount(8, $this->registrar->provides());    
+        $this->assertCount(8, $this->registrar->provides());
     }
 
     public function testAlert()
