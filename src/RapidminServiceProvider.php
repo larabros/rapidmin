@@ -43,23 +43,4 @@ class RapidminServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/config/config.php', 'rapidmin.config');
     }
-
-    /**
-     * Boots any Laravel package dependencies.
-     *
-     * @return void
-     */
-    protected function bootDependencies()
-    {
-    }
-
-    /**
-     * Registers any Laravel package dependencies.
-     *
-     * @return void
-     */
-    protected function registerDependencies()
-    {
-        // $this->app->register(Menu\MenuServiceProvider::class);
-    }
 }

@@ -1,11 +1,7 @@
 <div class="nav-tabs-custom">
-  <ul class="nav nav-tabs {{ $tabModifiers or '' }}">
+  <ul class="nav nav-tabs {{ $tabModifiers }}">
     @foreach ($tabs as $index => $tab)
-    @if ($index === 0)
-    <li class="active {{ $tab['modifiers'] or '' }}">
-      <a href="#{{ $tab['id'] or $index }}" data-toggle="tab">{!! $tab['label'] !!}</a>
-    </li>
-    @elseif (array_key_exists('dropdown', $tab))
+    @if (array_key_exists('dropdown', $tab))
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="{{ $tab['dropdown']['url'] }}">
         {!! $tab['label'] !!} <span class="caret"></span>
@@ -21,7 +17,7 @@
       </ul>
     </li>
     @else
-    <li class="{{ $tab['modifiers'] or '' }}">
+    <li class="{{ $index === 0 ? 'active ' : '' }}{{ $tab['modifiers'] or '' }}">
       <a href="#{{ $tab['id'] or $index }}" data-toggle="tab">{!! $tab['label'] !!}</a>
     </li>
     @endif
@@ -29,15 +25,9 @@
   </ul>
   <div class="tab-content">
     @foreach ($tabs as $index => $tab)
-    @if ($index === 0)
-    <div class="tab-pane active" id="{{ $tab['id'] or $index }}">
+    <div class="{{ $index === 0 ? 'active ' : '' }}tab-pane" id="{{ $tab['id'] or $index }}">
       {!! $tab['content'] !!}
     </div><!-- /.tab-pane -->
-    @else
-    <div class="tab-pane active" id="{{ $tab['id'] or $index }}">
-      {!! $tab['content'] !!}
-    </div><!-- /.tab-pane -->
-    @endif
     @endforeach
   </div><!-- /.tab-content -->
 </div><!-- nav-tabs-custom -->
