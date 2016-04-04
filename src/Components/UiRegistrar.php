@@ -23,21 +23,30 @@ class UiRegistrar extends AbstractRegistrar
 
     public function alert()
     {
-        $view = $this->viewFactory;
         return [
             'name'     => 'alert',
-            'callable' => $this->createCallable(
-                'alert', ['title', 'text', 'modifier' => 'alert-danger', 'isDismissable' => true]
+            'callable' => $this->createCallable('alert',
+                [
+                    'title',
+                    'text',
+                    'modifier' => 'alert-danger',
+                    'isDismissable' => true
+                ]
             ),
         ];
     }
 
     public function callout()
     {
-        $view = $this->viewFactory;
         return [
             'name'     => 'callout',
-            'callable' => $this->createCallable('callout', ['title', 'text', 'modifier']),
+            'callable' => $this->createCallable('callout',
+                [
+                    'title',
+                    'text',
+                    'modifier' => 'alert-info'
+                ]
+            ),
         ];
     }
 
@@ -45,7 +54,12 @@ class UiRegistrar extends AbstractRegistrar
     {
         return [
             'name'     => 'carousel',
-            'callable' => $this->createCallable('carousel', ['id', 'items' => []]),
+            'callable' => $this->createCallable('carousel',
+                [
+                    'id',
+                    'items' => []
+                ]
+            ),
         ];
     }
 
