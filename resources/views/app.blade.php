@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Lardmin | Dashboard</title>
+  <title>rapidmin | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -20,10 +20,10 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  @include('lardmin::partials.header')
+  @include('rapidmin::components.layout.header', ['miniLogo' => '<b>A</b>LT', 'largeLogo' => '<b>Admin</b>LTE'])
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
-    @include('lardmin::partials.nav.side')
+    @include('rapidmin::components.nav.left')
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
@@ -32,14 +32,14 @@
   </div>
   <!-- /.content-wrapper -->
 
-  @include('lardmin::partials.footer')
+  @include('rapidmin::components.layout.footer', ['name' => 'Larabros'])
 
-  @include('lardmin::partials.nav.control')
+  @include('rapidmin::components.nav.right')
 </div>
 <!-- ./wrapper -->
 
 <script>
-  var AdminLTEOptions = {{ $adminLteOptions }};
+  var AdminLTEOptions = {!! json_encode(config('rapidmin')) !!};
 </script>
 
 <!-- Concatenated and minified scripts -->
