@@ -1,4 +1,4 @@
-<div class="modal {{ $modifier or '' }}">
+<div class="modal {{ $modifier }}">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,7 +11,7 @@
       @if ($close || $save)
       <div class="modal-footer">
         @if ($close)
-        <button type="button" class="btn {{ $close['modifier'] or 'btn-default pull-left' }}" data-dismiss="modal">{{ $close['label'] }}</button>
+        <button type="button" class="btn {{ $close['modifier'] }}" data-dismiss="modal">{{ $close['label'] }}</button>
         @endif
         @if ($save)
         <button type="button" class="btn {{ $save['modifier'] or 'btn-primary' }}">{{ $save['label'] }}</button>

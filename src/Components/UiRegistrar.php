@@ -2,55 +2,70 @@
 
 namespace Larabros\Rapidmin\Components;
 
-class UiRegistrar
+class UiRegistrar extends AbstractRegistrar
 {
-    protected $view;
 
-    public function __construct($viewFactory)
+    protected $baseViewPath = 'rapidmin::components.ui';
+
+    public function provides()
     {
-        $this->view = $viewFactory;
+        return [
+            'alert',
+            'callout',
+            'carousel',
+            'modal',
+            'pagination',
+            'progress',
+            'tabs',
+            'timeline',
+        ];
     }
 
     public function alert()
     {
-        $view = $this->view;
+        $view = $this->viewFactory;
         return [
-            'name'      => 'alert',
-            'function'  => function($title, $text, $modifier = '', $isDismissable = true) use ($view) {
-                return $view->make(
-                    'rapidmin::components.ui.alert',
-                    ['title' => $title, 'text' => $text, 'modifier' => $modifier, 'isDismissable' => $isDismissable]
-                );
-            },
-            // 'template'  => 'components.ui.alert',
-            // 'signature' => ['title', 'text', 'modifier', 'isDismissable' => true],
+            'name'     => 'alert',
+            'callable' => $this->createCallable(
+                'alert', ['title', 'text', 'modifier' => 'alert-danger', 'isDismissable' => true]
+            ),
         ];
     }
 
     public function callout()
     {
+        $view = $this->viewFactory;
         return [
-            'name'      => 'callout',
-            'template'  => 'components.ui.callout',
-            'signature' => ['title', 'text', 'modifier'],
+            'name'     => 'callout',
+            'callable' => $this->createCallable('callout', ['title', 'text', 'modifier']),
         ];
     }
 
     public function carousel()
     {
         return [
-            'name'      => 'carousel',
-            'template'  => 'components.ui.carousel',
-            'signature' => ['id', 'items'],
+            'name'     => 'carousel',
+            'callable' => $this->createCallable('carousel', ['id', 'items' => []]),
         ];
     }
 
     public function modal()
     {
         return [
-            'name'      => 'modal',
-            'template'  => 'components.ui.modal',
-            'signature' => ['title', 'text', 'modifier', 'save' => false, 'close' => true,],
+            'name'     => 'modal',
+            'callable' => $this->createCallable('modal',
+                [
+                    'title',
+                    'text',
+                    'modifier',
+                    'save'  => false,
+                    'close' => [
+                        'label'    => 'Close',
+                        'modifier' => 'btn-default pull-left',
+
+                    ],
+                ]
+            ),
         ];
     }
 

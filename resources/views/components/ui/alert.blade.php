@@ -1,4 +1,4 @@
-<div class="alert {{ $modifier or 'alert-info'}} {{ $isDismissable ? 'alert-dismissable' : '' }}">
+<div class="alert {{ $modifier }} {{ $isDismissable ? 'alert-dismissable' : '' }}">
   @if ($isDismissable)
   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
   @endif

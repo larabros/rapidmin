@@ -60,14 +60,21 @@ class RapidminServiceProvider extends ServiceProvider
     protected function registerHtmlBuilder()
     {
         $this->app->singleton('html', function ($app) {
-            $builder = new HtmlBuilder($app['url']);
-            $ui = new Components\UiRegistrar($app['view']);
-
-            extract($ui->alert());
-            $builder->macro($name, $function);
-
-            return $builder;
+            return new HtmlBuilder($app['url']);
         });
+
+        $this->registerMacros();
+    }
+
+    protected function registerMacros()
+    {
+        $html = $this->app['html'];
+        $ui = new Components\UiRegistrar($this->app['view']);
+
+        foreach($ui->provides() as $macroName) {
+            extract($ui->$macroName());
+            $html->macro($name, $callable);
+        }
     }
 
     /**
