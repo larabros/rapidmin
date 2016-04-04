@@ -7,6 +7,8 @@ use Illuminate\Support\ServiceProvider;
 
 class RapidminServiceProvider extends ServiceProvider
 {
+    protected $defer = true;
+
     /**
      * Perform post-registration booting of services.
      *
@@ -42,5 +44,53 @@ class RapidminServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/config/config.php', 'rapidmin.config');
+
+        $this->registerHtmlBuilder();
+        // $this->registerFormBuilder();
+
+        $this->app->alias('html', HtmlBuilder::class);
+        // $this->app->alias('form', FormBuilder::class);
+    }
+
+    /**
+     * Register the HTML builder instance.
+     *
+     * @return void
+     */
+    protected function registerHtmlBuilder()
+    {
+        $this->app->singleton('html', function ($app) {
+            $builder = new HtmlBuilder($app['url']);
+            $ui = new Components\UiRegistrar($app['view']);
+
+            extract($ui->alert());
+            $builder->macro($name, $function);
+
+            return $builder;
+        });
+    }
+
+    /**
+     * Register the form builder instance.
+     *
+     * @return void
+     */
+    protected function registerFormBuilder()
+    {
+        // $this->app->singleton('form', function ($app) {
+        //     $form = new FormBuilder($app['html'], $app['url'], $app['view'], $app['session.store']->getToken());
+
+        //     return $form->setSessionStore($app['session.store']);
+        // });
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return ['html', HtmlBuilder::class];
     }
 }

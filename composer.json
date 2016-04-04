@@ -18,6 +18,7 @@
     "require": {
         "php": "^5.5.9 || ^7.0",
         "illuminate/support": "^5.1",
+        "illuminate/view": "^5.1",
         "laravelcollective/html": "^5.1"
     },
     "require-dev": {

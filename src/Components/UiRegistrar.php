@@ -4,17 +4,26 @@ namespace Larabros\Rapidmin\Components;
 
 class UiRegistrar
 {
-    public function chart($type, $data)
-    {
+    protected $view;
 
+    public function __construct($viewFactory)
+    {
+        $this->view = $viewFactory;
     }
 
     public function alert()
     {
+        $view = $this->view;
         return [
             'name'      => 'alert',
-            'template'  => 'components.ui.alert',
-            'signature' => ['title', 'text', 'modifier', 'isDismissable' => true],
+            'function'  => function($title, $text, $modifier = '', $isDismissable = true) use ($view) {
+                return $view->make(
+                    'rapidmin::components.ui.alert',
+                    ['title' => $title, 'text' => $text, 'modifier' => $modifier, 'isDismissable' => $isDismissable]
+                );
+            },
+            // 'template'  => 'components.ui.alert',
+            // 'signature' => ['title', 'text', 'modifier', 'isDismissable' => true],
         ];
     }
 
