@@ -5,6 +5,15 @@ namespace Larabros\Rapidmin;
 use Collective\Html\FormBuilder as BaseFormBuilder;
 use Illuminate\Support\Traits\Macroable;
 
+/**
+ * Provides convenient methods to build HTML forms quickly.
+ *
+ * @package    Rapidmin
+ * @author     Hassan Khan <contact@hassankhan.me>
+ * @author     Cai Leao <cainaleao.uk@gmail.com>
+ * @link       https://github.com/larabros/rapidmin
+ * @license    MIT
+ */
 class FormBuilder extends BaseFormBuilder
 {
     /**

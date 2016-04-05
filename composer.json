@@ -13,6 +13,12 @@
             "email": "contact@hassankhan.me",
             "homepage": "http://hassankhan.me",
             "role": "Developer"
+        },
+        {
+            "name": "Cai Leao",
+            "email": "cainaleao.uk@gmail.com",
+            "homepage": "https://github.com/cainaleaouk",
+            "role": "Developer"
         }
     ],
     "require": {

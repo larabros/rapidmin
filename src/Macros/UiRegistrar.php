@@ -1,12 +1,27 @@
 <?php
 
-namespace Larabros\Rapidmin\Components;
+namespace Larabros\Rapidmin\Macros;
 
+/**
+ * Registers UI components as macros on :php:class:`HtmlBuilder`.
+ *
+ * @package    Rapidmin
+ * @author     Hassan Khan <contact@hassankhan.me>
+ * @author     Cai Leao <cainaleao.uk@gmail.com>
+ * @link       https://github.com/larabros/rapidmin
+ * @license    MIT
+ */
 class UiRegistrar extends AbstractRegistrar
 {
 
+    /**
+     * {@inheritDoc}
+     */
     protected $baseViewPath = 'rapidmin::components.ui';
 
+    /**
+     * {@inheritDoc}
+     */
     public function provides()
     {
         return [
@@ -21,6 +36,11 @@ class UiRegistrar extends AbstractRegistrar
         ];
     }
 
+    /**
+     * Return the data required to create an alert macro.
+     *
+     * @return array
+     */
     public function alert()
     {
         return [
@@ -36,6 +56,11 @@ class UiRegistrar extends AbstractRegistrar
         ];
     }
 
+    /**
+     * Return the data required to create an callout macro.
+     *
+     * @return array
+     */
     public function callout()
     {
         return [
@@ -50,6 +75,11 @@ class UiRegistrar extends AbstractRegistrar
         ];
     }
 
+    /**
+     * Return the data required to create an carousel macro.
+     *
+     * @return array
+     */
     public function carousel()
     {
         return [
@@ -63,12 +93,18 @@ class UiRegistrar extends AbstractRegistrar
         ];
     }
 
+    /**
+     * Return the data required to create an modal macro.
+     *
+     * @return array
+     */
     public function modal()
     {
         return [
             'name'     => 'modal',
             'callable' => $this->createCallable('modal',
                 [
+                    'id',
                     'title',
                     'text',
                     'modifier',

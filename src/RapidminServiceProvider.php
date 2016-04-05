@@ -2,9 +2,18 @@
 
 namespace Larabros\Rapidmin;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
+use Larabros\Rapidmin\Macros\UiRegistrar;
 
+/**
+ * Registers and publishes Rapidmin configuration and resource files.
+ *
+ * @package    Rapidmin
+ * @author     Hassan Khan <contact@hassankhan.me>
+ * @author     Cai Leao <cainaleao.uk@gmail.com>
+ * @link       https://github.com/larabros/rapidmin
+ * @license    MIT
+ */
 class RapidminServiceProvider extends ServiceProvider
 {
     protected $defer = true;
@@ -14,7 +23,7 @@ class RapidminServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(Request $request)
+    public function boot()
     {
         // Config files
         $this->publishes([
@@ -29,9 +38,9 @@ class RapidminServiceProvider extends ServiceProvider
 
         // Bower and Gulp build file
         $this->publishes([
-            __DIR__.'/../.bowerrc'        => base_path('.bowerrc'),
-            __DIR__.'/../bower.json'      => base_path('bower.json'),
-            __DIR__.'/../gulpfile.js'     => base_path('gulpfile.js'),
+            __DIR__.'/../.bowerrc'    => base_path('.bowerrc'),
+            __DIR__.'/../bower.json'  => base_path('bower.json'),
+            __DIR__.'/../gulpfile.js' => base_path('gulpfile.js'),
         ], 'build');
 
     }
@@ -69,7 +78,7 @@ class RapidminServiceProvider extends ServiceProvider
     protected function registerMacros()
     {
         $html = $this->app['html'];
-        $ui = new Components\UiRegistrar($this->app['view']);
+        $ui = new UiRegistrar($this->app['view']);
 
         foreach($ui->provides() as $macroName) {
             extract($ui->$macroName());

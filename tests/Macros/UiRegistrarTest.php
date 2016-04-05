@@ -1,9 +1,9 @@
 <?php
 
-namespace Larabros\Rapidmin\Tests\Components;
+namespace Larabros\Rapidmin\Tests\Macros;
 
 use Illuminate\View\Factory;
-use Larabros\Rapidmin\Components\UiRegistrar;
+use Larabros\Rapidmin\Macros\UiRegistrar;
 use Larabros\Rapidmin\Tests\TestCase;
 use Mockery as m;
 

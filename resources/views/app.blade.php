@@ -20,21 +20,8 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  @include('rapidmin::components.layout.header', ['miniLogo' => '<b>A</b>LT', 'largeLogo' => '<b>Admin</b>LTE'])
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-    @include('rapidmin::components.nav.left')
-  </aside>
+  @yield('body')
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    @yield('content')
-  </div>
-  <!-- /.content-wrapper -->
-
-  @include('rapidmin::components.layout.footer', ['name' => 'Larabros'])
-
-  @include('rapidmin::components.nav.right')
 </div>
 <!-- ./wrapper -->
 

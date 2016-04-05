@@ -1,10 +1,20 @@
 <?php
 
-namespace Larabros\Rapidmin\Components;
+namespace Larabros\Rapidmin\Macros;
 
 use Closure;
 use Illuminate\View\Factory;
 
+/**
+ * An abstract registrar class. Extend this for each type of component to
+ * register as a macro.
+ *
+ * @package    Rapidmin
+ * @author     Hassan Khan <contact@hassankhan.me>
+ * @author     Cai Leao <cainaleao.uk@gmail.com>
+ * @link       https://github.com/larabros/rapidmin
+ * @license    MIT
+ */
 abstract class AbstractRegistrar
 {
     /**
@@ -32,6 +42,13 @@ abstract class AbstractRegistrar
     }
 
     /**
+     * Provides an array of all macros to be registered.
+     * 
+     * @return array
+     */
+    abstract public function provides();
+
+    /**
      * Creates a callable function which renders and returns a blade component.
      *
      * @param string $view
@@ -43,9 +60,9 @@ abstract class AbstractRegistrar
     {
         $factory    = $this->viewFactory;
         $basePath   = $this->baseViewPath;
-        $defaults   = $this->parseSignature($signature);
+        $defaults   = $this->normalizeSignature($signature);
 
-        return function() use ($factory, $basePath, $view, $signature, $defaults) {
+        return function() use ($factory, $basePath, $view, $defaults) {
             $args       = func_get_args();
             $parameters = [];
 
@@ -54,7 +71,7 @@ abstract class AbstractRegistrar
             foreach ($args as $index => $item) {
                 $parameters[$keys[$index]] = $item;
             }
-            
+
             return $factory->make(
                 $basePath.'.'.$view,
                 array_merge($defaults, $parameters)
@@ -62,7 +79,15 @@ abstract class AbstractRegistrar
         };
     }
 
-    protected function parseSignature(array $signature)
+    /**
+     * Normalizes a macro's signature such that parameter names are keys and
+     * any defaults are set as values.
+     *
+     * @param array $signature
+     *
+     * @return array
+     */
+    protected function normalizeSignature(array $signature)
     {
         $parameters = [];
 
@@ -76,6 +101,5 @@ abstract class AbstractRegistrar
         }
 
         return $parameters;
-        // Check if signature has default values
     }
 }

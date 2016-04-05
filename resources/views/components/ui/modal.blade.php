@@ -1,4 +1,4 @@
-<div class="modal {{ $modifier }}">
+<div class="modal {{ $modifier }}" id="{{ $id }}">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
