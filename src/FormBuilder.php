@@ -3,7 +3,6 @@
 namespace Larabros\Rapidmin;
 
 use Collective\Html\FormBuilder as BaseFormBuilder;
-use Illuminate\Support\Traits\Macroable;
 
 /**
  * Provides convenient methods to build HTML forms quickly.
@@ -19,11 +18,10 @@ class FormBuilder extends BaseFormBuilder
     /**
      * Open up a new HTML form.
      *
-     * @param  array $options
-     *
-     * @return \Illuminate\Support\HtmlString
+     * @param  array   $options
+     * @return string
      */
-    public function open(array $options = [])
+    public function open(array $options = array())
     {
         $method = array_get($options, 'method', 'post');
 
@@ -41,7 +39,8 @@ class FormBuilder extends BaseFormBuilder
         // different method than it actually is, for convenience from the forms.
         $append = $this->getAppendage($method);
 
-        if (isset($options['files']) && $options['files']) {
+        if (isset($options['files']) && $options['files'])
+        {
             $options['enctype'] = 'multipart/form-data';
         }
 
@@ -50,7 +49,7 @@ class FormBuilder extends BaseFormBuilder
         // is used to spoof requests for this PUT, PATCH, etc. methods on forms.
         $attributes = array_merge(
 
-          $attributes, array_except($options, $this->reserved)
+            $attributes, array_except($options, $this->reserved)
 
         );
 
@@ -59,19 +58,32 @@ class FormBuilder extends BaseFormBuilder
         // extra value for the hidden _method field if it's needed for the form.
         $attributes = $this->html->attributes($attributes);
 
-        return $this->toHtmlString('<form' . $attributes . '>' . $append);
+        return '<form'.$attributes.'>'.$append;
+    }
+
+    /**
+     * Close the current form.
+     *
+     * @return string
+     */
+    public function close()
+    {
+        $this->labels = array();
+
+        $this->model = null;
+
+        return '</form>';
     }
 
     /**
      * Create a form label element.
      *
-     * @param  string $name
-     * @param  string $value
-     * @param  array  $options
-     *
-     * @return \Illuminate\Support\HtmlString
+     * @param  string  $name
+     * @param  string  $value
+     * @param  array   $options
+     * @return string
      */
-    public function label($name, $value = null, $options = [])
+    public function label($name, $value = null, $options = array())
     {
         $this->labels[] = $name;
 
@@ -79,31 +91,29 @@ class FormBuilder extends BaseFormBuilder
 
         $value = e($this->formatLabel($name, $value));
 
-        return $this->toHtmlString('<label for="' . $name . '"' . $options . '>' . $value . '</label>');
+        return '<label for="'.$name.'"'.$options.'>'.$value.'</label>';
     }
 
     /**
      * Create a form input field.
      *
-     * @param  string $type
-     * @param  string $name
-     * @param  string $value
-     * @param  array  $options
-     *
-     * @return \Illuminate\Support\HtmlString
+     * @param  string  $type
+     * @param  string  $name
+     * @param  string  $value
+     * @param  array   $options
+     * @return string
      */
     public function input($type, $name, $value = null, $options = [])
     {
-        if (! isset($options['name'])) {
-            $options['name'] = $name;
-        }
+        if ( ! isset($options['name'])) $options['name'] = $name;
 
         // We will get the appropriate value for the given field. We will look for the
         // value in the session for the value in the old input data then we'll look
         // in the model instance if one is set. Otherwise we will just use empty.
         $id = $this->getIdAttribute($name, $options);
 
-        if (! in_array($type, $this->skipValueTypes)) {
+        if ( ! in_array($type, $this->skipValueTypes))
+        {
             $value = $this->getValueAttribute($name, $value);
         }
 
@@ -111,26 +121,22 @@ class FormBuilder extends BaseFormBuilder
         // attributes array so we can convert them into their HTML attribute format
         // when creating the HTML element. Then, we will return the entire input.
         $merge = compact('type', 'value', 'id');
-
-        $options = array_merge($options, $merge);
-
-        return $this->toHtmlString('<input' . $this->html->attributes($options) . '>');
+        $options = array_merge($options, $merge, ['class' => 'form-control']);
+        
+        return '<input'.$this->html->attributes($options).'>';
     }
 
     /**
      * Create a textarea input field.
      *
-     * @param  string $name
-     * @param  string $value
-     * @param  array  $options
-     *
-     * @return \Illuminate\Support\HtmlString
+     * @param  string  $name
+     * @param  string  $value
+     * @param  array   $options
+     * @return string
      */
-    public function textarea($name, $value = null, $options = [])
+    public function textarea($name, $value = null, $options = array())
     {
-        if (! isset($options['name'])) {
-            $options['name'] = $name;
-        }
+        if ( ! isset($options['name'])) $options['name'] = $name;
 
         // Next we will look for the rows and cols attributes, as each of these are put
         // on the textarea element definition. If they are not present, we will just
@@ -148,20 +154,19 @@ class FormBuilder extends BaseFormBuilder
         // the element. Then we'll create the final textarea elements HTML for us.
         $options = $this->html->attributes($options);
 
-        return $this->toHtmlString('<textarea' . $options . '>' . e($value) . '</textarea>');
+        return '<textarea'.$options.'>'.e($value).'</textarea>';
     }
 
     /**
      * Create a select box field.
      *
-     * @param  string $name
-     * @param  array  $list
-     * @param  string $selected
-     * @param  array  $options
-     *
-     * @return \Illuminate\Support\HtmlString
+     * @param  string  $name
+     * @param  array   $list
+     * @param  string  $selected
+     * @param  array   $options
+     * @return string
      */
-    public function select($name, $list = [], $selected = null, $options = [])
+    public function select($name, $list = array(), $selected = null, $options = array())
     {
         // When building a select box the "value" attribute is really the selected one
         // so we will use that when checking the model or session for a value which
@@ -170,21 +175,15 @@ class FormBuilder extends BaseFormBuilder
 
         $options['id'] = $this->getIdAttribute($name, $options);
 
-        if (! isset($options['name'])) {
-            $options['name'] = $name;
-        }
+        if ( ! isset($options['name'])) $options['name'] = $name;
 
         // We will simply loop through the options and build an HTML value for each of
         // them until we have an array of HTML declarations. Then we will join them
         // all together into one single HTML element that can be put on the form.
-        $html = [];
+        $html = array();
 
-        if (isset($options['placeholder'])) {
-            $html[] = $this->placeholderOption($options['placeholder'], $selected);
-            unset($options['placeholder']);
-        }
-
-        foreach ($list as $value => $display) {
+        foreach ($list as $value => $display)
+        {
             $html[] = $this->getSelectOption($display, $value, $selected);
         }
 
@@ -195,79 +194,60 @@ class FormBuilder extends BaseFormBuilder
 
         $list = implode('', $html);
 
-        return $this->toHtmlString("<select{$options}>{$list}</select>");
+        return "<select{$options}>{$list}</select>";
     }
 
     /**
      * Create an option group form element.
      *
-     * @param  array  $list
-     * @param  string $label
-     * @param  string $selected
-     *
-     * @return \Illuminate\Support\HtmlString
+     * @param  array   $list
+     * @param  string  $label
+     * @param  string  $selected
+     * @return string
      */
     protected function optionGroup($list, $label, $selected)
     {
-        $html = [];
+        $html = array();
 
-        foreach ($list as $value => $display) {
+        foreach ($list as $value => $display)
+        {
             $html[] = $this->option($display, $value, $selected);
         }
 
-        return $this->toHtmlString('<optgroup label="' . e($label) . '">' . implode('', $html) . '</optgroup>');
+        return '<optgroup label="'.e($label).'">'.implode('', $html).'</optgroup>';
     }
 
     /**
      * Create a select element option.
      *
-     * @param  string $display
-     * @param  string $value
-     * @param  string $selected
-     *
-     * @return \Illuminate\Support\HtmlString
+     * @param  string  $display
+     * @param  string  $value
+     * @param  string  $selected
+     * @return string
      */
     protected function option($display, $value, $selected)
     {
         $selected = $this->getSelectedValue($value, $selected);
 
-        $options = ['value' => $value, 'selected' => $selected];
+        $options = array('value' => e($value), 'selected' => $selected);
 
-        return $this->toHtmlString('<option' . $this->html->attributes($options) . '>' . e($display) . '</option>');
-    }
-
-    /**
-     * Create a placeholder select element option.
-     *
-     * @param $display
-     * @param $selected
-     *
-     * @return \Illuminate\Support\HtmlString
-     */
-    protected function placeholderOption($display, $selected)
-    {
-        $selected = $this->getSelectedValue(null, $selected);
-
-        $options = compact('selected');
-        $options['value'] = '';
-
-        return $this->toHtmlString('<option' . $this->html->attributes($options) . '>' . e($display) . '</option>');
+        return '<option'.$this->html->attributes($options).'>'.e($display).'</option>';
     }
 
     /**
      * Create a button element.
      *
-     * @param  string $value
-     * @param  array  $options
-     *
-     * @return \Illuminate\Support\HtmlString
+     * @param  string  $value
+     * @param  array   $options
+     * @return string
      */
-    public function button($value = null, $options = [])
+    public function button($value = null, $options = array())
     {
-        if (! array_key_exists('type', $options)) {
+        if ( ! array_key_exists('type', $options))
+        {
             $options['type'] = 'button';
         }
 
-        return $this->toHtmlString('<button' . $this->html->attributes($options) . '>' . $value . '</button>');
+        return '<button'.$this->html->attributes($options).'>'.$value.'</button>';
     }
 }

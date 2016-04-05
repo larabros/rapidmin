@@ -3,7 +3,6 @@
 namespace Larabros\Rapidmin;
 
 use Collective\Html\HtmlBuilder as BaseHtmlBuilder;
-use Illuminate\Support\Traits\Macroable;
 
 /**
  * Provides convenient methods to build HTML quickly.

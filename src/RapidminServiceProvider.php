@@ -55,10 +55,10 @@ class RapidminServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/config/config.php', 'rapidmin.config');
 
         $this->registerHtmlBuilder();
-        // $this->registerFormBuilder();
+        $this->registerFormBuilder();
 
         $this->app->alias('html', HtmlBuilder::class);
-        // $this->app->alias('form', FormBuilder::class);
+        $this->app->alias('form', FormBuilder::class);
     }
 
     /**
@@ -93,11 +93,13 @@ class RapidminServiceProvider extends ServiceProvider
      */
     protected function registerFormBuilder()
     {
-        // $this->app->singleton('form', function ($app) {
-        //     $form = new FormBuilder($app['html'], $app['url'], $app['view'], $app['session.store']->getToken());
-
-        //     return $form->setSessionStore($app['session.store']);
-        // });
+         $this->app->singleton('form', function ($app) {
+             return (new FormBuilder(
+                 $app['html'],
+                 $app['url'],
+                 $app['session.store']->getToken()
+             ))->setSessionStore($app['session.store']);
+         });
     }
 
     /**
@@ -107,6 +109,6 @@ class RapidminServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['html', HtmlBuilder::class];
+        return ['html', HtmlBuilder::class, 'form', FormBuilder::class];
     }
 }
