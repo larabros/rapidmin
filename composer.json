@@ -13,10 +13,19 @@
             "email": "contact@hassankhan.me",
             "homepage": "http://hassankhan.me",
             "role": "Developer"
+        },
+        {
+            "name": "Cai Leao",
+            "email": "cainaleao.uk@gmail.com",
+            "homepage": "https://github.com/cainaleaouk",
+            "role": "Developer"
         }
     ],
     "require": {
-        "php": "^5.5.9 || ^7.0"
+        "php": "^5.5.9 || ^7.0",
+        "illuminate/support": "^5.1",
+        "illuminate/view": "^5.1",
+        "laravelcollective/html": "^5.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8 || ^5.0",

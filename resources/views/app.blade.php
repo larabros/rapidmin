@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Lardmin | Dashboard</title>
+  <title>rapidmin | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -20,26 +20,13 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  @include('lardmin::partials.header')
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-    @include('lardmin::partials.nav.side')
-  </aside>
+  @yield('body')
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    @yield('content')
-  </div>
-  <!-- /.content-wrapper -->
-
-  @include('lardmin::partials.footer')
-
-  @include('lardmin::partials.nav.control')
 </div>
 <!-- ./wrapper -->
 
 <script>
-  var AdminLTEOptions = {{ $adminLteOptions }};
+  var AdminLTEOptions = {!! json_encode(config('rapidmin')) !!};
 </script>
 
 <!-- Concatenated and minified scripts -->
