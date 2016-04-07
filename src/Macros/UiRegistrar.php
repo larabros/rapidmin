@@ -131,9 +131,18 @@ class UiRegistrar extends AbstractRegistrar
     public function progress()
     {
         return [
-            'name'      => 'progress',
-            'template'  => 'components.ui.progress',
-            'signature' => ['current', 'min' => 0, 'max' => 100, 'isVertical' => false, 'isStriped' => false, 'sizeModifier' => '', 'modifier' => 'progress-bar-primary'],
+            'name'     => 'progress',
+            'callable' => $this->createCallable('progress',
+                [
+                    'current',
+                    'min'         => 0,
+                    'max'         => 100,
+                    'isStriped'   => false,
+                    'isVertical'  => false,
+                    'modifier'    => '',
+                    'barModifier' => 'progress-bar-primary',
+                ]
+            ),
         ];
     }
 
