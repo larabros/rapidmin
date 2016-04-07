@@ -45,14 +45,12 @@ class UiRegistrar extends AbstractRegistrar
     {
         return [
             'name'     => 'alert',
-            'callable' => $this->createCallable('alert',
-                [
-                    'title',
-                    'text',
-                    'modifier' => 'alert-danger',
-                    'isDismissable' => true
-                ]
-            ),
+            'callable' => $this->createCallable('alert', [
+                'title',
+                'text',
+                'modifier' => 'alert-danger',
+                'isDismissable' => true
+            ]),
         ];
     }
 
@@ -65,13 +63,11 @@ class UiRegistrar extends AbstractRegistrar
     {
         return [
             'name'     => 'callout',
-            'callable' => $this->createCallable('callout',
-                [
-                    'title',
-                    'text',
-                    'modifier' => 'alert-info'
-                ]
-            ),
+            'callable' => $this->createCallable('callout', [
+                'title',
+                'text',
+                'modifier' => 'alert-info'
+            ]),
         ];
     }
 
@@ -84,12 +80,10 @@ class UiRegistrar extends AbstractRegistrar
     {
         return [
             'name'     => 'carousel',
-            'callable' => $this->createCallable('carousel',
-                [
-                    'id',
-                    'items' => []
-                ]
-            ),
+            'callable' => $this->createCallable('carousel', [
+                'id',
+                'items' => []
+            ]),
         ];
     }
 
@@ -102,20 +96,18 @@ class UiRegistrar extends AbstractRegistrar
     {
         return [
             'name'     => 'modal',
-            'callable' => $this->createCallable('modal',
-                [
-                    'id',
-                    'title',
-                    'text',
-                    'modifier',
-                    'save'  => false,
-                    'close' => [
-                        'label'    => 'Close',
-                        'modifier' => 'btn-default pull-left',
+            'callable' => $this->createCallable('modal', [
+                'id',
+                'title',
+                'text',
+                'modifier',
+                'save'  => false,
+                'close' => [
+                    'label'    => 'Close',
+                    'modifier' => 'btn-default pull-left',
 
-                    ],
-                ]
-            ),
+                ],
+            ]),
         ];
     }
 
@@ -132,35 +124,36 @@ class UiRegistrar extends AbstractRegistrar
     {
         return [
             'name'     => 'progress',
-            'callable' => $this->createCallable('progress',
-                [
-                    'current',
-                    'min'         => 0,
-                    'max'         => 100,
-                    'isStriped'   => false,
-                    'isVertical'  => false,
-                    'modifier'    => '',
-                    'barModifier' => 'progress-bar-primary',
-                ]
-            ),
+            'callable' => $this->createCallable('progress', [
+                'current',
+                'min'         => 0,
+                'max'         => 100,
+                'isStriped'   => false,
+                'isVertical'  => false,
+                'modifier'    => '',
+                'barModifier' => 'progress-bar-primary',
+            ]),
         ];
     }
 
     public function tabs()
     {
         return [
-            'name'      => 'tabs',
-            'template'  => 'components.ui.tabs',
-            'signature' => ['tabs' => [], 'tabModifiers' => ''],
+            'name'     => 'tabs',
+            'callable' => $this->createCallable('tabs', [
+                'tabs'     => [],
+                'modifier' => '',
+            ]),
         ];
     }
 
     public function timeline()
     {
         return [
-            'name'      => 'timeline',
-            'template'  => 'components.ui.timeline',
-            'signature' => ['items' => []],
+            'name'     => 'timeline',
+            'callable' => $this->createCallable('timeline', [
+                'items' => [],
+            ]),
         ];
     }
 }

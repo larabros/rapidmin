@@ -1,5 +1,5 @@
 <ul class="timeline">
-  @foreach ($items as $item)
+  @forelse ($items as $item)
   @if (array_key_exists('label', $item))
   <!-- timeline time label -->
   <li class="time-label">
@@ -8,7 +8,7 @@
     </span>
   </li>
   <!-- /.timeline-label -->
-  @else
+  @elseif (array_key_exists('header', $item))
   <!-- timeline item -->
   <li>
     <i class="fa {{ $item['icon'] }} {{ $item['modifier'] }}"></i>
@@ -22,16 +22,18 @@
       @endif
       @if (array_key_exists('footer', $item))
       <div class="timeline-footer">
-        @foreach ($item['footer'] as $footerItem)
-        <a class="btn {{ $footerItem['modifier'] or '' }}">{{ $footerItem['label'] }}</a>
-        @endforeach
+        @forelse ($item['footer'] as $footerItem)
+        <a href="{{ $footerItem['url'] }}" class="btn {{ $footerItem['modifier'] or '' }}">{{ $footerItem['label'] }}</a>
+        @empty
+        @endforelse
       </div>
       @endif
     </div>
   </li>
   <!-- END timeline item -->
   @endif
-  @endforeach
+  @empty
+  @endforelse
   <li>
     <i class="fa fa-clock-o bg-gray"></i>
   </li>
