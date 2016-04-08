@@ -4,6 +4,7 @@ namespace Larabros\Rapidmin;
 
 use Illuminate\Support\ServiceProvider;
 use Larabros\Rapidmin\Macros\UiRegistrar;
+use Larabros\Rapidmin\Macros\WidgetRegistrar;
 
 /**
  * Registers and publishes Rapidmin configuration and resource files.
@@ -77,11 +78,18 @@ class RapidminServiceProvider extends ServiceProvider
     protected function registerMacros()
     {
         $html = $this->app['html'];
-        $ui   = new UiRegistrar($this->app['view']);
+//        $ui   = new UiRegistrar($this->app['view']);
 
-        foreach ($ui->provides() as $macroName) {
-            extract($ui->$macroName());
-            $html->macro($name, $callable);
+        $registrars = [
+            new UiRegistrar($this->app['view']),
+            new WidgetRegistrar($this->app['view']),
+        ];
+
+        foreach ($registrars as $registrar) {
+            foreach ($registrar->provides() as $macroName) {
+                extract($registrar->$macroName());
+                $html->macro($name, $callable);
+            }
         }
     }
 

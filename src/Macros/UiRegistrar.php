@@ -55,7 +55,7 @@ class UiRegistrar extends AbstractRegistrar
     }
 
     /**
-     * Return the data required to create an callout macro.
+     * Return the data required to create a callout macro.
      *
      * @return array
      */
@@ -72,7 +72,7 @@ class UiRegistrar extends AbstractRegistrar
     }
 
     /**
-     * Return the data required to create an carousel macro.
+     * Return the data required to create a carousel macro.
      *
      * @return array
      */
@@ -88,7 +88,7 @@ class UiRegistrar extends AbstractRegistrar
     }
 
     /**
-     * Return the data required to create an modal macro.
+     * Return the data required to create a modal macro.
      *
      * @return array
      */
@@ -111,6 +111,11 @@ class UiRegistrar extends AbstractRegistrar
         ];
     }
 
+    /**
+     * Return the data required to create a pagination macro.
+     *
+     * @return array
+     */
     public function pagination()
     {
         return [
@@ -120,6 +125,11 @@ class UiRegistrar extends AbstractRegistrar
         ];
     }
 
+    /**
+     * Return the data required to create a progress bar macro.
+     *
+     * @return array
+     */
     public function progress()
     {
         return [
@@ -136,6 +146,11 @@ class UiRegistrar extends AbstractRegistrar
         ];
     }
 
+    /**
+     * Return the data required to create a tabs macro.
+     *
+     * @return array
+     */
     public function tabs()
     {
         return [
@@ -147,6 +162,11 @@ class UiRegistrar extends AbstractRegistrar
         ];
     }
 
+    /**
+     * Return the data required to create a timeline macro.
+     *
+     * @return array
+     */
     public function timeline()
     {
         return [

@@ -11,14 +11,58 @@ namespace Larabros\Rapidmin\Macros;
  * @link       https://github.com/larabros/rapidmin
  * @license    MIT
  */
-class WidgetRegistrar
+class WidgetRegistrar extends AbstractRegistrar
 {
-    public function info()
+    /**
+     * {@inheritDoc}
+     */
+    protected $baseViewPath = 'rapidmin::components.widgets';
+
+    /**
+     * {@inheritDoc}
+     */
+    public function provides()
     {
         return [
-            'name'      => 'info',
-            'template'  => 'components.widgets.boxes.info',
-            'signature' => ['title', 'value', 'icon', 'modifier'],
+            'infobox',
+            'statbox',
+        ];
+    }
+
+    /**
+     * Return the data required to create a infobox macro.
+     *
+     * @return array
+     */
+    public function infobox()
+    {
+        return [
+            'name'     => 'infobox',
+            'callable' => $this->createCallable('boxes.info', [
+                'title',
+                'value'    => '',
+                'icon'     => 'fa fa-envelope-o',
+                'modifier' => 'bg-aqua',
+            ]),
+        ];
+    }
+
+    /**
+     * Return the data required to create a statbox macro.
+     *
+     * @return array
+     */
+    public function statbox()
+    {
+        return [
+            'name'     => 'statbox',
+            'callable' => $this->createCallable('boxes.info', [
+                'title',
+                'value'    => '',
+                'icon'     => 'fa fa-shopping-cart',
+                'modifier' => 'bg-aqua',
+                'footer'   => '',
+            ]),
         ];
     }
 }

@@ -1,12 +1,12 @@
-<div class="small-box bg-aqua">
+<div class="small-box {{ $modifier }}">
   <div class="inner">
-    <h3>150</h3>
-    <p>New Orders</p>
+    <h3>{{ $value }}</h3>
+    <p>{{ $title }}</p>
   </div>
   <div class="icon">
-    <i class="fa fa-shopping-cart"></i>
+    <i class="{{ $icon }}"></i>
   </div>
   <a href="#" class="small-box-footer">
-    More info <i class="fa fa-arrow-circle-right"></i>
+    {!! $footer !!}}
   </a>
 </div>
