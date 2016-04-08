@@ -63,12 +63,12 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [link-contributors]: ../../contributors
 
 [ico-phpeye]: http://php-eye.com/badge/larabros/rapidmin/tested.svg?style=flat-square
-[ico-styleci]: https://styleci.io/repos/:styleci_repo/shield
+[ico-styleci]: https://styleci.io/repos/55343444/shield
 [ico-docs]: https://img.shields.io/badge/docs-stable-brightgreen.svg?style=flat-square
 [ico-gitter]: https://img.shields.io/gitter/room/larabros/rapidmin.svg?style=flat-square
 
 [link-phpeye]: http://php-eye.com/package/larabros/rapidmin
-[link-styleci]: https://styleci.io/repos/51898151/
+[link-styleci]: https://styleci.io/repos/55343444/
 [link-docs]: http://rapidmin.readthedocs.org/en/stable
 [link-apidocs]: http://rapidmin.readthedocs.org/en/stable/Larabros/Rapidmin
 [link-gitter]: https://gitter.im/larabros/rapidmin
