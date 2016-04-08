@@ -19,6 +19,7 @@
             <directory suffix=".php">src/</directory>
             <exclude>
                 <file>src/RapidminServiceProvider.php</file>
+                <directory suffix=".php">src/config/</directory>
             </exclude>
         </whitelist>
     </filter>

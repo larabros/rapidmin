@@ -37,4 +37,29 @@ class UiRegistrarTest extends TestCase
     {
         $this->assertEquals('callout', $this->registrar->callout()['name']);
     }
+
+    public function testCarousel()
+    {
+        $this->assertEquals('carousel', $this->registrar->carousel()['name']);
+    }
+
+    public function testModal()
+    {
+        $this->assertEquals('modal', $this->registrar->modal()['name']);
+    }
+
+    public function testProgress()
+    {
+        $this->assertEquals('progress', $this->registrar->progress()['name']);
+    }
+
+    public function testTabs()
+    {
+        $this->assertEquals('tabs', $this->registrar->tabs()['name']);
+    }
+
+    public function testTimeline()
+    {
+        $this->assertEquals('timeline', $this->registrar->timeline()['name']);
+    }
 }
