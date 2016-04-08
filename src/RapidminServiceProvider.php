@@ -42,7 +42,6 @@ class RapidminServiceProvider extends ServiceProvider
             __DIR__.'/../bower.json'  => base_path('bower.json'),
             __DIR__.'/../gulpfile.js' => base_path('gulpfile.js'),
         ], 'build');
-
     }
 
     /**
@@ -78,9 +77,9 @@ class RapidminServiceProvider extends ServiceProvider
     protected function registerMacros()
     {
         $html = $this->app['html'];
-        $ui = new UiRegistrar($this->app['view']);
+        $ui   = new UiRegistrar($this->app['view']);
 
-        foreach($ui->provides() as $macroName) {
+        foreach ($ui->provides() as $macroName) {
             extract($ui->$macroName());
             $html->macro($name, $callable);
         }
@@ -93,7 +92,7 @@ class RapidminServiceProvider extends ServiceProvider
      */
     protected function registerFormBuilder()
     {
-         $this->app->singleton('form', function ($app) {
+        $this->app->singleton('form', function ($app) {
              return (new FormBuilder(
                  $app['html'],
                  $app['url'],

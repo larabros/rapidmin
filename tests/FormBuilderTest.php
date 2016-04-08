@@ -33,14 +33,15 @@ class FormBuilderTest extends TestCase
 
     public function testOpen()
     {
-//        $expected = '';
+        //        $expected = '';
 //        $actual   = $this->builder->open(['url' => '/']);
 //
 //        $this->assertEquals($expected, $actual);
     }
 
     public function testClose()
-    {}
+    {
+    }
 
     public function testInput()
     {

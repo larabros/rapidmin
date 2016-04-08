@@ -43,7 +43,7 @@ abstract class AbstractRegistrar
 
     /**
      * Provides an array of all macros to be registered.
-     * 
+     *
      * @return array
      */
     abstract public function provides();
@@ -62,7 +62,7 @@ abstract class AbstractRegistrar
         $basePath   = $this->baseViewPath;
         $defaults   = $this->normalizeSignature($signature);
 
-        return function() use ($factory, $basePath, $view, $defaults) {
+        return function () use ($factory, $basePath, $view, $defaults) {
             $args       = func_get_args();
             $parameters = [];
 

@@ -41,7 +41,6 @@ class FormBuilder extends BaseFormBuilder
      */
     public function input($type, $name, $value = null, $options = [])
     {
-
         $options = $this->mergeDefaults($options);
         return parent::input($type, $name, $value, $options);
     }
