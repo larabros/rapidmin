@@ -78,16 +78,16 @@ class RapidminServiceProvider extends ServiceProvider
     protected function registerMacros()
     {
         $html = $this->app['html'];
-//        $ui   = new UiRegistrar($this->app['view']);
+        $view = $this->app['view'];
 
         $registrars = [
-            new UiRegistrar($this->app['view']),
-            new WidgetRegistrar($this->app['view']),
+            new UiRegistrar($view),
+            new WidgetRegistrar($view),
         ];
 
         foreach ($registrars as $registrar) {
             foreach ($registrar->provides() as $macroName) {
-                extract($registrar->$macroName());
+                list($name, $callable) = $registrar->$macroName();
                 $html->macro($name, $callable);
             }
         }

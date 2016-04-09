@@ -37,8 +37,8 @@ class WidgetRegistrar extends AbstractRegistrar
     public function infobox()
     {
         return [
-            'name'     => 'infobox',
-            'callable' => $this->createCallable('boxes.info', [
+            'infobox',
+            $this->createCallable('boxes.info', [
                 'title',
                 'value'    => '',
                 'icon'     => 'fa fa-envelope-o',
@@ -55,8 +55,8 @@ class WidgetRegistrar extends AbstractRegistrar
     public function statbox()
     {
         return [
-            'name'     => 'statbox',
-            'callable' => $this->createCallable('boxes.info', [
+            'statbox',
+            $this->createCallable('boxes.stat', [
                 'title',
                 'value'    => '',
                 'icon'     => 'fa fa-shopping-cart',

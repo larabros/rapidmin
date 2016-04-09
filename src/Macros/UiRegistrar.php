@@ -29,7 +29,7 @@ class UiRegistrar extends AbstractRegistrar
             'callout',
             'carousel',
             'modal',
-            'pagination',
+//            'pagination',
             'progress',
             'tabs',
             'timeline',
@@ -44,8 +44,8 @@ class UiRegistrar extends AbstractRegistrar
     public function alert()
     {
         return [
-            'name'     => 'alert',
-            'callable' => $this->createCallable('alert', [
+            'alert',
+            $this->createCallable('alert', [
                 'title',
                 'text',
                 'modifier' => 'alert-danger',
@@ -62,8 +62,8 @@ class UiRegistrar extends AbstractRegistrar
     public function callout()
     {
         return [
-            'name'     => 'callout',
-            'callable' => $this->createCallable('callout', [
+            'callout',
+            $this->createCallable('callout', [
                 'title',
                 'text',
                 'modifier' => 'alert-info'
@@ -79,8 +79,8 @@ class UiRegistrar extends AbstractRegistrar
     public function carousel()
     {
         return [
-            'name'     => 'carousel',
-            'callable' => $this->createCallable('carousel', [
+            'carousel',
+            $this->createCallable('carousel', [
                 'id',
                 'items' => []
             ]),
@@ -95,8 +95,8 @@ class UiRegistrar extends AbstractRegistrar
     public function modal()
     {
         return [
-            'name'     => 'modal',
-            'callable' => $this->createCallable('modal', [
+            'modal',
+            $this->createCallable('modal', [
                 'id',
                 'title',
                 'text',
@@ -118,11 +118,11 @@ class UiRegistrar extends AbstractRegistrar
      */
     public function pagination()
     {
-        return [
-            'name'      => 'pagination',
-            'template'  => 'components.ui.pagination',
-            'signature' => ['title', 'text', 'modifier', 'save' => false, 'close' => true,],
-        ];
+//        return [
+//            'naame'      => 'pagination',
+//            'template'  => 'components.ui.pagination',
+//            'signature' => ['title', 'text', 'modifier', 'save' => false, 'close' => true,],
+//        ];
     }
 
     /**
@@ -133,8 +133,8 @@ class UiRegistrar extends AbstractRegistrar
     public function progress()
     {
         return [
-            'name'     => 'progress',
-            'callable' => $this->createCallable('progress', [
+            'progress',
+            $this->createCallable('progress', [
                 'current',
                 'min'         => 0,
                 'max'         => 100,
@@ -154,8 +154,8 @@ class UiRegistrar extends AbstractRegistrar
     public function tabs()
     {
         return [
-            'name'     => 'tabs',
-            'callable' => $this->createCallable('tabs', [
+            'tabs',
+            $this->createCallable('tabs', [
                 'tabs'     => [],
                 'modifier' => '',
             ]),
@@ -170,8 +170,8 @@ class UiRegistrar extends AbstractRegistrar
     public function timeline()
     {
         return [
-            'name'     => 'timeline',
-            'callable' => $this->createCallable('timeline', [
+            'timeline',
+            $this->createCallable('timeline', [
                 'items' => [],
             ]),
         ];
