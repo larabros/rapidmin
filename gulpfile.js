@@ -71,6 +71,11 @@ elixir(function(mix) {
         paths.bower + 'AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js',
         paths.bower + 'AdminLTE/plugins/slimScroll/jquery.slimscroll.js',
         paths.bower + 'AdminLTE/plugins/chartjs/Chart.js',
+        paths.bower + 'AdminLTE/plugins/flot/jquery.flot.js',
+        paths.bower + 'AdminLTE/plugins/flot/jquery.flot.categories.js',
+        paths.bower + 'AdminLTE/plugins/flot/jquery.flot.canvas.js',
+        paths.bower + 'AdminLTE/plugins/flot/jquery.flot.resize.js',
+        paths.bower + 'AdminLTE/plugins/flot/jquery.flot.pie.js',
         paths.bower + 'AdminLTE/plugins/fastclick/fastclick.js',
         paths.bower + 'AdminLTE/dist/js/app.js',
     ], 'public/js/vendor.js');

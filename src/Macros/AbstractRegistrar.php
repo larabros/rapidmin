@@ -51,8 +51,8 @@ abstract class AbstractRegistrar
     /**
      * Creates a callable function which renders and returns a blade component.
      *
-     * @param string $view
-     * @param array $signature
+     * @param string|callable $view
+     * @param array           $signature
      *
      * @return Closure
      */
@@ -72,10 +72,13 @@ abstract class AbstractRegistrar
                 $parameters[$keys[$index]] = $item;
             }
 
-            return $factory->make(
-                $basePath.'.'.$view,
-                array_merge($defaults, $parameters)
-            );
+            $parameters = array_merge($defaults, $parameters);
+
+            if (is_callable($view)) {
+                $view = $view($parameters);
+            }
+
+            return $factory->make($basePath.'.'.$view, $parameters);
         };
     }
 

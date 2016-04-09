@@ -3,6 +3,7 @@
 namespace Larabros\Rapidmin;
 
 use Illuminate\Support\ServiceProvider;
+use Larabros\Rapidmin\Macros\ChartRegistrar;
 use Larabros\Rapidmin\Macros\UiRegistrar;
 use Larabros\Rapidmin\Macros\WidgetRegistrar;
 
@@ -83,6 +84,7 @@ class RapidminServiceProvider extends ServiceProvider
         $registrars = [
             new UiRegistrar($view),
             new WidgetRegistrar($view),
+            new ChartRegistrar($view),
         ];
 
         foreach ($registrars as $registrar) {
