@@ -1,5 +1,5 @@
 <div class="chart {{ $modifier }}">
-    <div id="{{ $id }}" style="height: 300px;"></div>
+  <div id="{{ $id }}" style="{{ $options['height'] or 'height: 300px;' }}"></div>
 </div>
 
 

@@ -2,8 +2,10 @@
 
 namespace Larabros\Rapidmin\Macros;
 
+use InvalidArgumentException;
+
 /**
- * Registers widget components as macros on :php:class:`HtmlBuilder`.
+ * Registers chart components as macros on :php:class:`HtmlBuilder`.
  *
  * @package    Rapidmin
  * @author     Hassan Khan <contact@hassankhan.me>
@@ -63,7 +65,7 @@ class ChartRegistrar extends AbstractRegistrar
     public function checkType(array $parameters)
     {
         if (!array_key_exists('type', $parameters)) {
-            throw new \Exception('No type was specified');
+            throw new InvalidArgumentException('No type was specified');
         }
 
         return $parameters['library'];
